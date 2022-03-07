@@ -1,11 +1,10 @@
 package com.alex.io;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.List;
 
 import static com.alex.io.Student.*;
 import static com.alex.io.WriterRepository.studentList;
+import static com.alex.io.WriterView.GSON;
 
 public class WriterController {
     //controller - обработка запросов от пользователя
@@ -37,7 +36,8 @@ public class WriterController {
 /*            FileInputStream fis = new FileInputStream("C:/Users/cudlo/Desktop/2.txt");
             ObjectInputStream ois = new ObjectInputStream(fis);*/
             Student student = (Student) ois.readObject();
-            System.out.println(student);
+            String outputDataJsonFormat = GSON.toJson(student);
+            System.out.println(outputDataJsonFormat);
 /*            int studentsCount = ois.readInt();
             Student[] students1 = (Student[]) ois.readObject();
             System.out.println(Arrays.toString(students1));

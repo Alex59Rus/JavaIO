@@ -1,12 +1,7 @@
 package com.alex.io;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.sql.SQLOutput;
-import java.util.Enumeration;
-
-import static com.alex.io.WriterController.*;
-import static com.alex.io.WriterRepository.*;
+import static com.alex.io.WriterController.readDataFromFile;
+import static com.alex.io.WriterController.writingDataIntoFile;
 
 public class Writer {
     public static void main(String[] args) {
