@@ -14,6 +14,7 @@ public class Writer {
         // метод запускающий и объеиняющий все 4 класса
         inputStream();
         readObject();
+
     }
 }
 
