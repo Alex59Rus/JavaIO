@@ -2,7 +2,7 @@ package com.alex.io;
 
 public class Student extends Person {
     int course;
-    double GPA;
+    transient double GPA;
     static Student student1 = new Student(1,"Alex",23,5,4.78);
     static Student student2 = new Student(2,"Simon",18, 1, 4.01);
     static Student student3 = new Student(3,"Peter",19,2,3.99);
