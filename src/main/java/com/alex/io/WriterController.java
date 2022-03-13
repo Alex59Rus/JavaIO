@@ -7,35 +7,35 @@ import static com.alex.io.WriterView.GSON;
 
 public class WriterController {
     //controller - обработка запросов от пользователя
-    static String path = "C:/Users/cudlo/Desktop/2.txt";
-    public static Object inputInfo() {
-        Scanner scan = new Scanner(System.in);
-        try (PrintWriter writer = new PrintWriter(new FileWriter(path))) {
-            System.out.println("Введите имя: ");
-            String studentName = scan.nextLine();
-            writer.write(GSON.toJson(studentName));
-            System.out.println("Введите возраст: ");
-            int studentAge = scan.nextInt();
-            writer.write(GSON.toJson(studentAge));
-            System.out.println("Введите курс: ");
-            int studentCourse = scan.nextInt();
-            writer.write(GSON.toJson(studentCourse));
-            Student newStudent = new Student((int) ((Math.random() + 1) * 99999), studentName, studentAge, studentCourse, Math.floor(Math.random() + 3));
-            writer.write(GSON.toJson(newStudent));
-            System.out.println(newStudent);
+    static String path = "C:/Users/cudlo/Desktop/1.txt";
+
+    public static Student inputInfo() {
+        Scanner scanInt = new Scanner(System.in);
+        Scanner scanStr = new Scanner(System.in);
+        try {
+            File file = new File(path);
+            PrintWriter writer = new PrintWriter(file);
+            System.out.print("Введите имя: ");
+            String studentName = scanStr.nextLine();
+            writer.write(studentName);
+            System.out.print("Введите возраст: ");
+            int studentAge = scanInt.nextInt();
+            writer.write(studentAge);
+            System.out.print("Введите курс: ");
+            int studentCourse = scanInt.nextInt();
+            writer.write(studentCourse);
+            writer.write(GSON.toJson(new Student(studentName,studentAge,studentCourse)));
+/*            writer.write(GSON.toJson(Student));
+            System.out.println(GSON.toJson(newStudent));*/
+            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
-
     public static void writingDataIntoFile() {
-
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("C:/Users/cudlo/Desktop/2.txt",true))){
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path,true))){
             oos.writeObject(WriterController.inputInfo());
-/*          oos.writeObject(student1);
-            oos.writeObject(student2);
-            oos.writeObject(student3);*/
             System.out.println("Данные успешно записаны в файл");
         } catch (FileNotFoundException e) {
             System.out.println("Файл не найден");
@@ -44,14 +44,12 @@ public class WriterController {
             e.printStackTrace();
         }
     }
-
     public static void readDataFromFile() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:/Users/cudlo/Desktop/2.txt"))) {
-
+        try /*(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path))) */{
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path));
             Student student = (Student) ois.readObject();
             String outputDataJsonFormat = GSON.toJson(student);
             System.out.println(outputDataJsonFormat);
-
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
