@@ -1,10 +1,58 @@
 package com.alex.io;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import java.util.Scanner;
+
+import static com.alex.io.WriterController.readDataFromFile;
 
 public class WriterView {
     //view - все данные, необходимые для работы с консолью
-    public static Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    public static void selectChoice() {
+        Scanner doChoice = new Scanner(System.in);
+        Scanner inputInt = new Scanner(System.in);
+        Scanner inputStr = new Scanner(System.in);
+        int choice;
+        do{
+            System.out.println("1. Показать список студентов");
+            System.out.println("2. Добавить нового студента");
+            System.out.println("3. Изменить данные студента");
+            System.out.println("4. Поиск данных о студенте");
+            System.out.println("5. Удалить данные о студенте");
+            System.out.println("0. Сохранить и выйти");
+            System.out.print("Сделайте выбор: ");
+            choice = doChoice.nextInt();
+
+            switch (choice) {
+                case 1:
+                    /*System.out.println("----------------------");
+                    Iterator<Student> c = Student.ourStudents.iterator();
+                    while (c.hasNext()) {
+                        Student e = c.next();
+                        System.out.println(e);
+                    }
+                    System.out.println("----------------------");*/
+                    readDataFromFile();
+                    break;
+                case 2:
+                    System.out.print("Введите ID: "); //в дальнейшем вставить генератор ID + исключение совпадений
+                    int inputId = inputInt.nextInt();
+                    System.out.print("Введите Имя: ");
+                    String inputName = inputStr.nextLine();
+                    System.out.print("Введите возраст: ");
+                    int inputAge = inputInt.nextInt();
+                    System.out.print("Введите курс: ");
+                    int inputCourse = inputInt.nextInt();
+                    Student.ourStudents.add(new Student(inputId,inputName,inputAge,inputCourse));
+                    //WriterController.createJson();
+                    WriterController.writingDataIntoFile();
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+            }
+        }while (choice != 0);
+    }
 
 }
