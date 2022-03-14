@@ -12,12 +12,12 @@ public class WriterView {
         Scanner inputStr = new Scanner(System.in);
         int choice;
         do{
-            System.out.println("1. Показать список студентов");
-            System.out.println("2. Добавить нового студента");
-            System.out.println("3. Изменить данные студента");
-            System.out.println("4. Поиск данных о студенте");
-            System.out.println("5. Удалить данные о студенте");
-            System.out.println("0. Сохранить и выйти");
+            System.out.println("1. Показать список студентов"); //DISPLAY
+            System.out.println("2. Добавить нового студента"); //CREATE
+            System.out.println("3. Изменить данные студента"); //UPDATE
+            System.out.println("4. Поиск данных о студенте"); //SEARCH
+            System.out.println("5. Удалить данные о студенте"); //DELETE
+            System.out.println("0. Сохранить и выйти"); //EXIT
             System.out.print("Сделайте выбор: ");
             choice = doChoice.nextInt();
 
@@ -42,7 +42,6 @@ public class WriterView {
                     System.out.print("Введите курс: ");
                     int inputCourse = inputInt.nextInt();
                     Student.ourStudents.add(new Student(inputId,inputName,inputAge,inputCourse));
-                    //WriterController.createJson();
                     WriterController.writingDataIntoFile();
                     break;
                 case 3:

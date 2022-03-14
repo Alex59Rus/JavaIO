@@ -34,11 +34,11 @@ public class Student {
 
     @Override
     public String toString() {
-        return "{" +
+        return  "{" +
                 "ID: " + id +
                 "| name:" + name +
                 "| age:" + age +
                 "| course:" + course +
-                "},";
+                "}";
     }
 }
