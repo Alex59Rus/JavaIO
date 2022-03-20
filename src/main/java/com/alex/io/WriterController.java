@@ -11,12 +11,11 @@ import static com.alex.io.LabelRepository.newLabel;
 
 public class WriterController implements Serializable {
     //controller - обработка запросов от пользователя
-    static String path = "labels";
     public static Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     public static void writingDataIntoFile() {
         try {
-            FileWriter writer = new FileWriter(LabelRepository.labelsFile,true);
+            FileWriter writer = new FileWriter(LabelRepository.labelsDirFile,true);
             for (LabelRepository labels : newLabel) {
                 Label newLabel = new Label();
                 writer.write(GSON.toJson(newLabel));
@@ -30,7 +29,7 @@ public class WriterController implements Serializable {
         public static void readDataFromFile() {
             Scanner scanner = null;
             try {
-                scanner = new Scanner(LabelRepository.labelsFile);
+                scanner = new Scanner(LabelRepository.labelsDirFile);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }

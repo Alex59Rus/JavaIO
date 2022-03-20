@@ -1,25 +1,94 @@
 package com.alex.io;
 
-import com.google.gson.Gson;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class WriterRepository {
     //repository - классы, реализующие доступ к текстовым файлам
-/*        File writerDirFile = new File("C:/Users/cudlo/Desktop/writers.json");
-        File postsDirFile = new File("C:/Users/cudlo/Desktop/posts.json");
-        File writerFile = new File(writerDirFile);
-        File postsFile = new File(postsDirFile);*/
+        File writerDirFile = new File("writers.json");
+        private int id;
+        private String name;
+        private List <PostRepository> posts;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<PostRepository> getPosts() {
+        return posts;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPosts(List<PostRepository> posts) {
+        this.posts = posts;
+    }
+
+    @Override
+    public String toString() {
+        return "WriterRepository{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", posts=" + posts +
+                '}';
+    }
+}
+class PostRepository {
+    File postsDirFile = new File("posts.json");
+    private int id;
+    private String name;
+    private List<LabelRepository> labels;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<LabelRepository> getLabels() {
+        return labels;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLabels(List<LabelRepository> labels) {
+        this.labels = labels;
+    }
+
+    @Override
+    public String toString() {
+        return "PostRepository{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", labels=" + labels +
+                '}';
+    }
+
 }
 class LabelRepository {
-    static File labelsDirFile = new File("labels");
-    public static File labelsFile = new File(String.valueOf(labelsDirFile));
-    int id;
-    String name;
+    static File labelsDirFile = new File("labels.json");
+    private int id;
+    private String name;
     public static List<LabelRepository> newLabel = new ArrayList<>();
-    String jsonCollection = new Gson().toJson(newLabel);
     public LabelRepository(int id, String name) {
         this.id = id;
         this.name = name;
@@ -27,9 +96,19 @@ class LabelRepository {
     public int getId() {
         return id;
     }
+
     public String getName() {
         return name;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "LabelRepository{" +

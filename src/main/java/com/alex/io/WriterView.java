@@ -1,5 +1,10 @@
 package com.alex.io;
 
+import com.google.gson.Gson;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -24,14 +29,27 @@ public class WriterView {
 
             switch (choice) {
                 case 1:
+                    Gson gson = new Gson();
+                    FileReader fr = null;
+                    try {
+                        fr = new FileReader("labels.json");
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } finally {
+                        try {
+                            fr.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     readDataFromFile();
                     break;
                 case 2:
                     System.out.print("Введите ID: ");
                     int inputId = inputInt.nextInt();
                     System.out.print("Введите название: ");
-                    String inputName = inputStr.nextLine();
-                    LabelRepository.newLabel.add(new LabelRepository(inputId,inputName));
+                    String inputName = inputStr.next();
+                    LabelRepository.newLabel.add(new LabelRepository(inputId, inputName));
                     WriterController.writingDataIntoFile();
                     break;
                 case 3:
@@ -39,14 +57,15 @@ public class WriterView {
                 case 4:
                     boolean found = false;
                     Iterator<LabelRepository> labelRepositoryIterator = LabelRepository.newLabel.iterator();
-                    System.out.print("Введите ID чего-то");
+                    System.out.print("Введите ID чего-то: ");
                     inputId = inputInt.nextInt();
                     while (labelRepositoryIterator.hasNext()) {
-                        LabelRepository e = labelRepositoryIterator.next();
-                        if(e.getId() == inputId){
-                            System.out.println(e);
+                        LabelRepository lr = labelRepositoryIterator.next();
+                        if (lr.getId() == inputId) {
+                            System.out.println(lr);
                             found = true;
-                        }if(!found){
+                        }
+                        if (!found) {
                             System.out.println("Запись не найдена");
                         }
                     }
