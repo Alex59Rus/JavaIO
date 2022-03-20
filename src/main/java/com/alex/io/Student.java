@@ -1,9 +1,10 @@
 package com.alex.io;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Student {
+public class Student implements Serializable {
     private int id;
     private String name;
     private int age;
@@ -20,25 +21,31 @@ public class Student {
         this.age = age;
         this.course = course;
     }
-    public int getId() { return id; }
+    public int getId() {
+        return id;
+    }
 
     public String getName() {
+
         return name;
     }
 
     public int getAge() {
+
         return age;
     }
 
-    public int getCourse() { return course; }
+    public int getCourse() {
+        return course;
+    }
 
     @Override
     public String toString() {
         return  "{" +
                 "ID: " + id +
-                "| name:" + name +
-                "| age:" + age +
-                "| course:" + course +
+                "|name: " + name +
+                "|age: " + age +
+                "|course: " + course +
                 "}";
     }
 }
