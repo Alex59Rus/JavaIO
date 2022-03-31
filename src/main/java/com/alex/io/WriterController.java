@@ -3,9 +3,9 @@ package com.alex.io;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.awt.*;
-import java.io.*;
-import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Serializable;
 
 import static com.alex.io.LabelRepository.newLabel;
 
@@ -16,10 +16,11 @@ public class WriterController implements Serializable {
     public static void writingDataIntoFile() {
         try {
             FileWriter writer = new FileWriter(LabelRepository.labelsDirFile,true);
-            for (LabelRepository labels : newLabel) {
+            /*for (LabelRepository labels : newLabel) {
                 Label newLabel = new Label();
                 writer.write(GSON.toJson(newLabel));
-            }
+            }*/
+            writer.write(GSON.toJson(newLabel));
             newLabel.removeAll(newLabel);
             writer.close();
         } catch (IOException ioException) {
@@ -27,7 +28,8 @@ public class WriterController implements Serializable {
         }
     }
         public static void readDataFromFile() {
-            Scanner scanner = null;
+
+/*            Scanner scanner = null;
             try {
                 scanner = new Scanner(LabelRepository.labelsDirFile);
             } catch (FileNotFoundException e) {
@@ -35,8 +37,7 @@ public class WriterController implements Serializable {
             }
             while (scanner.hasNextLine()) {
                 System.out.println(scanner.nextLine());
-            }
-
+            }*/
         }
 }
 
