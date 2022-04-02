@@ -1,10 +1,10 @@
 package com.alex.io;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
-public class WriterRepository {
+class WriterRepository {
     //repository - классы, реализующие доступ к текстовым файлам
         File writerDirFile = new File("writers.json");
         private int id;
@@ -82,17 +82,19 @@ class PostRepository {
                 ", labels=" + labels +
                 '}';
     }
-
 }
 class LabelRepository {
     static File labelsDirFile = new File("labels.json");
     private int id;
     private String name;
-    public static List<LabelRepository> newLabel = new ArrayList<>();
+    public static List<LabelRepository> newLabel = new LinkedList<>();
+
+
     public LabelRepository(int id, String name) {
         this.id = id;
         this.name = name;
     }
+
     public int getId() {
         return id;
     }

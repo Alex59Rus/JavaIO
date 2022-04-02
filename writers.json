@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "some": "some",
+  "labels": {"id": 1,
+    "some": "some",
+    "writers": {
+      "id": 2,
+      "some": "some"
+    }
+  }
+}

@@ -1,14 +1,10 @@
 package com.alex.io;
 
-import com.google.gson.Gson;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Iterator;
 import java.util.Scanner;
 
+import static com.alex.io.LabelRepository.newLabel;
 import static com.alex.io.WriterController.readDataFromFile;
+import static com.alex.io.WriterController.writingDataIntoFile;
 
 public class WriterView {
     //view - все данные, необходимые для работы с консолью
@@ -29,10 +25,10 @@ public class WriterView {
 
             switch (choice) {
                 case 1:
-                    Gson gson = new Gson();
+                    /*Gson gson = new Gson();
                     FileReader fr = null;
                     try {
-                        fr = new FileReader("labels.json");
+                        fr = new FileReader(labelsDirFile);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     } finally {
@@ -41,22 +37,22 @@ public class WriterView {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    }
+                    }*/
                     readDataFromFile();
                     break;
                 case 2:
                     System.out.print("Введите ID: ");
-                    int inputId = inputInt.nextInt();
+                    Integer inputId = inputInt.nextInt();
                     System.out.print("Введите название: ");
-                    String inputName = inputStr.next();
-                    LabelRepository.newLabel.add(new LabelRepository(inputId, inputName));
-                    WriterController.writingDataIntoFile();
+                    String inputName = inputStr.nextLine();
+                    newLabel.add(new LabelRepository(inputId,inputName));
+                    writingDataIntoFile();
                     break;
                 case 3:
                     break;
                 case 4:
                     boolean found = false;
-                    Iterator<LabelRepository> labelRepositoryIterator = LabelRepository.newLabel.iterator();
+/*                    Iterator<LabelRepository> labelRepositoryIterator = newLabel.iterator();
                     System.out.print("Введите ID чего-то: ");
                     inputId = inputInt.nextInt();
                     while (labelRepositoryIterator.hasNext()) {
@@ -68,7 +64,7 @@ public class WriterView {
                         if (!found) {
                             System.out.println("Запись не найдена");
                         }
-                    }
+                    }*/
                     break;
                 case 5:
                     break;
